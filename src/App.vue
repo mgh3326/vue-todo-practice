@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></TodoList>
-    <TodoFooter v-on:clearAll="clearAllItems"></TodoFooter>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -15,28 +15,6 @@
 
   export default {
     name: 'app',
-    data() {
-      return {
-        todoItems: []
-      }
-    },
-    methods: {
-      // TODO 메소드를 store.js로 옮기기(vuex)
-      removeOneItem(todoItem, index) {
-        localStorage.removeItem(todoItem.item);
-        this.todoItems.splice(index, 1);
-      },
-      toggleOneItem(todoItem, index) {
-        this.todoItems[index].completed = !this.todoItems[index].completed;
-        localStorage.removeItem(todoItem.item);
-        localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-      },
-      clearAllItems() {
-        localStorage.clear();
-        this.todoItems = []
-      }
-    },
-
     components: {
       TodoHeader,
       TodoFooter,
